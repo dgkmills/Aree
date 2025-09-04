@@ -17,7 +17,7 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 600px;
+            max-width: 600px; /* Adjusting for a better look on desktop */
             margin: 0 auto;
         }
         h1 {
@@ -38,6 +38,17 @@
         nav a {
             margin: 0 15px;
         }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 600px) {
+            .container {
+                max-width: 90%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -52,18 +63,15 @@
             I can put my stories and pictures here.
         </p>
         
-        <!-- You can put a link to an image from the web here!  -->
         <img src="AreeBasic.jpg" alt="A photo of Aree">
         
         <p>
             It's so much fun to make things with AI!
         </p>
         
-        <!-- This link will open her Gemini Storybook -->
         <p>
             Check out my amazing <a href="https://g.co/gemini/share/4989acbda228" target="_blank">story!</a>
         </p>
     </div>
 </body>
 </html>
-
