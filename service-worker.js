@@ -1,5 +1,5 @@
-// Set a cache name for the service worker
-const CACHE_NAME = 'arees-pwa-cache-v1';
+// Set a new cache name for the service worker
+const CACHE_NAME = 'arees-pwa-cache-v2';
 // List the files we want to cache
 const urlsToCache = [
   './',
