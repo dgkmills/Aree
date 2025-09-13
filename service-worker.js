@@ -2,17 +2,16 @@
 const CACHE_NAME = 'arees-pwa-cache-v1';
 // List the files we want to cache
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/projects.html',
-  '/styles.css', // Assuming you'll move your styles to a separate file
-  '/AreeBasic.jpg',
-  '/Ann2D.jpg',
-  '/Ann3D.jpg',
-  '/AreeEngineer1.jpg',
-  '/Lisa2D.jpg',
-  '/Lisa3D.jpg',
-  // You would also list any other assets like JS files, fonts, etc.
+  './',
+  './index.html',
+  './projects.html',
+  './AreeBasic.jpg',
+  './Ann2D.jpg',
+  './Ann3D.jpg',
+  './AreeEngineer1.jpg',
+  './Lisa2D.jpg',
+  './Lisa3D.jpg',
+  './favicon.png'
 ];
 
 // This event is fired when the service worker is installed

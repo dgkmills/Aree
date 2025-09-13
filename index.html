@@ -6,11 +6,11 @@
     <title>Aree's Fun Page!</title>
     <!-- PWA Manifest link -->
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="./favicon.png">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffe4e6;
+            background-color: #E0FFFF;
             color: #333;
             text-align: center;
             padding: 20px;
@@ -47,6 +47,11 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+        /* Make sure images are properly sized */
+        .container img {
+            max-width: 100%;
+            height: auto;
+        }
         @media (max-width: 600px) {
             .container {
                 max-width: 90%;
@@ -66,7 +71,7 @@
             I can put my stories and pictures here.
         </p>
         
-        <img src="https://placehold.co/600x400/ffe4e6/d11c52?text=Aree" alt="A photo of Aree">
+        <img src="./AreeBasic.jpg" alt="A photo of Aree">
         
         <p>
             It's so much fun to make things with AI!
@@ -81,7 +86,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
                     // Registration was successful
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 }, function(err) {
