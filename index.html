@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aree's Fun Page!</title>
+    <!-- PWA Manifest link -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="/favicon.png">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #E0FFFF;
+            background-color: #ffe4e6;
             color: #333;
             text-align: center;
             padding: 20px;
@@ -17,7 +20,7 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 600px; /* Adjusting for a better look on desktop */
+            max-width: 600px;
             margin: 0 auto;
         }
         h1 {
@@ -63,7 +66,7 @@
             I can put my stories and pictures here.
         </p>
         
-        <img src="AreeBasic.jpg" alt="A photo of Aree">
+        <img src="https://placehold.co/600x400/ffe4e6/d11c52?text=Aree" alt="A photo of Aree">
         
         <p>
             It's so much fun to make things with AI!
@@ -73,6 +76,20 @@
             Check out my amazing <a href="https://g.co/gemini/share/4989acbda228" target="_blank">story!</a>
         </p>
     </div>
+    
+    <!-- Register the Service Worker for PWA functionality -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                    // Registration was successful
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    // registration failed :(
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
 </body>
 </html>
-
