@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aree's Fun Page!</title>
     <!-- PWA Manifest link -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <link rel="icon" href="./favicon.png">
     <style>
         body {
@@ -40,19 +40,21 @@
         }
         nav a {
             margin: 0 15px;
+            color: #d11c52;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
         }
         img {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        /* Make sure images are properly sized */
-        .container img {
-            max-width: 100%;
-            height: auto;
-        }
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
             .container {
                 max-width: 90%;
             }
@@ -64,6 +66,7 @@
         <nav>
             <a href="index.html">Home</a>
             <a href="projects.html">Projects</a>
+            <a href="blog.html">Blog</a>
         </nav>
         <h1>Welcome to Aree's World!</h1>
         <p>
@@ -71,7 +74,7 @@
             I can put my stories and pictures here.
         </p>
         
-        <img src="./AreeBasic.jpg" alt="A photo of Aree">
+        <img src="./images/AreeBasic.jpg" alt="A photo of Aree">
         
         <p>
             It's so much fun to make things with AI!
@@ -86,6 +89,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
+                // Corrected path to be relative
                 navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
                     // Registration was successful
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);

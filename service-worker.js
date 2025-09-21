@@ -1,16 +1,22 @@
 // Set a new cache name for the service worker
-const CACHE_NAME = 'arees-pwa-cache-v2';
+const CACHE_NAME = 'arees-pwa-cache-v3'; // Incremented version to ensure update
 // List the files we want to cache
+// Corrected all paths to point to the 'images' folder and added all pages
 const urlsToCache = [
   './',
   './index.html',
   './projects.html',
-  './AreeBasic.jpg',
-  './Ann2D.jpg',
-  './Ann3D.jpg',
-  './AreeEngineer1.jpg',
-  './Lisa2D.jpg',
-  './Lisa3D.jpg',
+  './blog.html',
+  './manifest.json',
+  './images/AreeBasic.jpg',
+  './images/Ann2D.jpg',
+  './images/Ann3D.jpg',
+  './images/AreeEngineer1.jpg',
+  './images/Lisa2D.jpg',
+  './images/Lisa3D.jpg',
+  './images/AbbyAI.png',
+  './images/AbbyDrawing.jpg',
+  './images/AreeKpopDreamJob.png',
   './favicon.png'
 ];
 
