@@ -1,5 +1,6 @@
 // Set a new cache name for the service worker
-const CACHE_NAME = 'arees-pwa-cache-v3'; // Incremented version to ensure update
+// V4: Changed to "Network First" caching strategy to fix update issues.
+const CACHE_NAME = 'arees-pwa-cache-v4'; 
 // List the files we want to cache
 // Corrected all paths to point to the 'images' folder and added all pages
 const urlsToCache = [
@@ -36,31 +37,64 @@ self.addEventListener('install', event => {
   );
 });
 
+// --- THIS IS THE UPDATED PART ---
 // This event is fired when the service worker fetches content
+// We are using a "Network First" strategy
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    // Check if the request is in the cache
-    caches.match(event.request)
-      .then(response => {
-        // If yes, return the cached version
-        if (response) {
-          return response;
-        }
-        // If no, fetch from the network
-        return fetch(event.request);
-      })
-  );
+  // We only want to apply this to navigation requests (e.g., loading the page)
+  // and not for images, etc. You can expand this logic later if needed.
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      // 1. Try to fetch from the network (get the new version)
+      fetch(event.request)
+        .then(response => {
+          // 2. If successful, cache the new response and return it
+          return caches.open(CACHE_NAME).then(cache => {
+            // Check if it's a valid response before caching
+            if (response.status === 200) {
+              cache.put(event.request, response.clone());
+            }
+            return response;
+          });
+        })
+        .catch(() => {
+          // 3. If the network fails (offline), return the page from the cache
+          return caches.match(event.request);
+        })
+    );
+  } else {
+    // For non-navigation requests (images, etc.), use "Cache First"
+    // This makes the site load fast.
+    event.respondWith(
+      caches.match(event.request)
+        .then(response => {
+          // If yes, return the cached version
+          if (response) {
+            return response;
+          }
+          // If no, fetch from the network and cache it
+          return fetch(event.request).then(networkResponse => {
+            return caches.open(CACHE_NAME).then(cache => {
+              if (networkResponse.status === 200) {
+                cache.put(event.request, networkResponse.clone());
+              }
+              return networkResponse;
+            });
+          });
+        })
+    );
+  }
 });
 
 // This event is fired when a new service worker is activated
 self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
+  const cacheWhitelist = [CACHE_NAME]; // Only keep the new v4 cache
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
-            // Delete old caches
+            // Delete old caches (v1, v2, v3, etc.)
             return caches.delete(cacheName);
           }
         })
